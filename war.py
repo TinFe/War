@@ -54,7 +54,6 @@ class Player:
 
 import time
 
-war_list = []
 
 def battle():
     print(f"{player0.name} draws the {player0cards[0]}")
@@ -110,57 +109,58 @@ def war():
     elif player0cards[-1].value == player1cards[-1].value:
         war()
 
-    
+while True: 
 
 
-player0 = Player("China")
-player1 = Player('North Korea')
-deck = Deck()
-deck.shuffle_deck()
-player0cards = []
-player1cards = []
+    player0 = Player("China")
+    player1 = Player('North Korea')
+    deck = Deck()
+    deck.shuffle_deck()
+    player0cards = []
+    player1cards = []
 
-while len(deck.all_cards) > 0:
-    player0.add_cards(deck.deal_one())
-    player1.add_cards(deck.deal_one())
-
-
-
-print(f"----{player0.name}'s cards----")
-for i in range(len(player0.all_cards)):
-    print(player0.all_cards[i])
-print(f"----{player1.name}'s cards----")
-for i in range(len(player1.all_cards)):
-    print(player1.all_cards[i]) 
+    while len(deck.all_cards) > 0:
+        player0.add_cards(deck.deal_one())
+        player1.add_cards(deck.deal_one())
 
 
-while True:
 
-    if len(player0.all_cards) == 0:
-        print(f'{player1.name} wins!')
+    print(f"----{player0.name}'s cards----")
+    for i in range(len(player0.all_cards)):
+        print(player0.all_cards[i])
+    print(f"----{player1.name}'s cards----")
+    for i in range(len(player1.all_cards)):
+        print(player1.all_cards[i]) 
 
-        break
-    elif len(player1.all_cards) == 0:
-        print(f'{player0.name} wins!')
-        break
-    
-    else:
-        player0cards.append(player0.remove_one())
-        player1cards.append(player1.remove_one())
+
+    while True:
+
+        if len(player0.all_cards) == 0:
+            print(f'{player1.name} wins!')
+
+            break
+        elif len(player1.all_cards) == 0:
+            print(f'{player0.name} wins!')
+            break
         
-        if player0cards[0].value != player1cards[0].value:
-            battle()
-            player0cards.clear()
-            player1cards.clear()
-            
-
-
         else:
-            war()
-            player0cards.clear()
-            player1cards.clear()
+            player0cards.append(player0.remove_one())
+            player1cards.append(player1.remove_one())
+            
+            if player0cards[0].value != player1cards[0].value:
+                battle()
+                player0cards.clear()
+                player1cards.clear()
+                
 
 
+            else:
+                war()
+                player0cards.clear()
+                player1cards.clear()
+
+    print('press enter to run again')
+    input()
 
 
 
